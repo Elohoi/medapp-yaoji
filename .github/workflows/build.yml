@@ -1,0 +1,49 @@
+name: Build Android APK with Cordova
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Cordova
+        run: npm install -g cordova@12
+
+      - name: Create Cordova project
+        run: |
+          cordova create medapp com.yaoji.medapp "药记"
+          cp www/index.html medapp/www/index.html
+          cp config.xml medapp/config.xml
+          mkdir -p medapp/res/icon/android
+          cp res/icon/android/*.png medapp/res/icon/android/ || true
+
+      - name: Add Android platform
+        run: |
+          cd medapp
+          cordova platform add android
+
+      - name: Build Debug APK
+        run: |
+          cd medapp
+          cordova build android --debug
+
+      - name: Upload APK artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 药记APP-Debug
+          path: medapp/platforms/android/app/build/outputs/apk/debug/*.apk
+          retention-days: 30

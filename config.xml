@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.yaoji.medapp" version="1.0.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>药记</name>
+    <description>用药助手 - 记录每日服药情况</description>
+    <author email="user@example.com" href="https://example.com">
+        药记开发组
+    </author>
+
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <!-- 权限配置 -->
+    <preference name="AndroidExtraPermissions" value="CAMERA" />
+    <preference name="android-minSdkVersion" value="22" />
+    <preference name="android-targetSdkVersion" value="34" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#4CAF8E" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
+    <!-- 图标 -->
+    <platform name="android">
+        <icon src="res/icon/android/ldpi.png" density="ldpi" />
+        <icon src="res/icon/android/mdpi.png" density="mdpi" />
+        <icon src="res/icon/android/hdpi.png" density="hdpi" />
+        <icon src="res/icon/android/xhdpi.png" density="xhdpi" />
+        <icon src="res/icon/android/xxhdpi.png" density="xxhdpi" />
+        <icon src="res/icon/android/xxxhdpi.png" density="xxxhdpi" />
+        <splash src="res/screen/android/splash.png" />
+    </platform>
+
+    <engine name="android" spec="~12.0.0" />
+    
+    <!-- 插件：摄像头、通知、震动 -->
+    <plugin name="cordova-plugin-camera" spec="~6.0.0" />
+    <plugin name="cordova-plugin-dialogs" spec="~2.0.2" />
+    <plugin name="cordova-plugin-vibration" spec="~3.1.1" />
+    <plugin name="cordova-plugin-local-notification" spec="~1.0.0" />
+    
+    <!-- 主题 -->
+    <preference name="Theme" value="@android:style/Theme.DeviceDefault.NoActionBar" />
+</widget>
